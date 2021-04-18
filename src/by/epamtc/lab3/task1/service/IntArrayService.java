@@ -1,8 +1,10 @@
 package by.epamtc.lab3.task1.service;
 
+import by.epamtc.lab3.task1.entity.Array;
+
 public class IntArrayService {
 
-    public static int[] cutArray(int[] array,int from,int to){
+    private static int[] cutArray(int[] array,int from,int to){
         if(array==null){
             //выбросить своё исключение
         }
@@ -14,13 +16,15 @@ public class IntArrayService {
         }
         int[] answer=new int[to-from];
         int counter=0;
-        for (int i = from; i <to; i++,counter++) {
+        for (int i = from; i <to; i++) {
             answer[counter]=array[i];
+            counter++;
         }
         return answer;
     }
 
-    public static int[] findPrimeNumbers(int[] array){
+    public static int[] findPrimeNumbers(Array mas){
+        int[] array=mas.getMas();
         if(array==null){
             //выбросить своё исключение
         }
@@ -28,7 +32,7 @@ public class IntArrayService {
         int counter=0;
         for (int i = 0; i <array.length; i++) {
             if(IntService.isPrimeNumber(array[i])){
-                answer[i]=array[i];
+                answer[counter]=array[i];
                 counter++;
             }
         }
@@ -36,7 +40,8 @@ public class IntArrayService {
 
     }
 
-    public static int[] findFibonacciNumbers(int[] array){
+    public static int[] findFibonacciNumbers(Array mas){
+        int[] array=mas.getMas();
         if(array==null){
             //выбросить своё исключение
         }
@@ -44,14 +49,16 @@ public class IntArrayService {
         int counter=0;
         for (int i = 0; i <array.length; i++) {
             if(IntService.isFibonacciNumber(array[i])){
-                answer[i]=array[i];
+                answer[counter]=array[i];
                 counter++;
             }
         }
         return cutArray(answer,0,counter);
 
     }
-    public static int[] findThreeDigitUniqueNumbers(int[] array){
+
+    public static int[] findThreeDigitUniqueNumbers(Array mas){
+        int[] array=mas.getMas();
         if(array==null){
             //выбросить своё исключение
         }
@@ -59,7 +66,7 @@ public class IntArrayService {
         int counter=0;
         for (int i = 0; i <array.length; i++) {
             if(IntService.isThreeDigitUniqueNumbers(array[i])){
-                answer[i]=array[i];
+                answer[counter]=array[i];
                 counter++;
             }
         }

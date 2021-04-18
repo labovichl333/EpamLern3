@@ -9,14 +9,13 @@ public class IntService {
             return true;
         }
         boolean ansver=true;
-        if (number>=2){
-            for (int i = 2; i <number; i++) {
-                if(number%i==0){
-                    ansver=false;
-                    break;
-                }
+        for (int i = 2; i <number; i++) {
+            if(number%i==0){
+                ansver=false;
+                break;
             }
         }
+
         return ansver;
     }
 
@@ -34,13 +33,20 @@ public class IntService {
         boolean answer=true;
         number=Math.abs(number);
         if(number<100 || number>999){
-            answer=false;
+            return false;
         }
-        int n1=number%10;
-        int n2=number%100-n1*10;
-        int n3=number%1000-n2*100-n1*10;
-        if(n1==n2 || n2==n3 || n3==n1){
-            answer=false;
+        boolean[] hasNumber=new boolean[10];
+        String numStr=String.valueOf(number);
+        for (int i = 0; i <numStr.length(); i++) {
+            String activeNum=""+numStr.charAt(i);
+            int num=Integer.parseInt(activeNum);
+            if(hasNumber[num]){
+                answer=false;
+                break;
+            }
+            if(!hasNumber[num]){
+                hasNumber[num]=true;
+            }
         }
         return answer;
     }
